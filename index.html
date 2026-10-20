@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cherno Barrie</title>
 <meta name="description" content="Cherno Barrie, learning designer in London. Case studies in offline health training, children's literacy and finance CPD.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Nunito:wght@600;700;800&display=swap">
 <style>
 /* Ink: one light system with black bands, 2px rules, square corners and a single red accent used sparingly.
    Deliberately single-theme (a printed-ink look), so every colour is set explicitly. */
@@ -182,6 +182,25 @@ footer .inner{padding-block:22px;font-size:.82rem;color:var(--muted)}
   .skills span{padding:12px 14px}
   .cost th:nth-child(3),.cost td.barcell{display:none}
 }
+/* Notice Me illustrations (the app's own palette) */
+.mocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:6px}
+.mock{margin:0;min-width:0}
+.phone{background:#F6F7FB;border:8px solid var(--ink);border-radius:26px;padding:16px 14px 18px;font-family:"Nunito",var(--font);color:#1B2430;max-width:300px;display:flex;flex-direction:column;gap:9px}
+.mh{font-weight:800;font-size:1.05rem}
+.mnote{background:#fff;border:1px solid #E6E8F0;border-radius:12px;padding:10px 12px;font-size:.85rem}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:.75rem;color:#6B7280}
+.mrow span{flex:1 0 100%}
+.mrow b{background:#5B63D8;color:#fff;border-radius:10px;padding:6px 11px;font-size:.8rem}
+.mtell{border:1px solid #E6C9A8;background:#FDF3E6;color:#8A5A08;border-radius:14px;padding:11px;text-align:center;font-weight:800;font-size:.85rem}
+.mhead{font-size:.72rem;font-weight:700;color:#6B7280}
+.mchips{display:flex;flex-wrap:wrap;gap:6px}
+.mchips i{font-style:normal;border:1px solid #E6C9A8;background:#FDF7EE;color:#8A5A08;border-radius:999px;padding:6px 10px;font-size:.72rem;font-weight:650}
+.mfeed{background:#fff;border:1px solid #E6E8F0;border-radius:12px;padding:10px 12px;font-size:.85rem}
+.mfeed p{margin:6px 0 2px}
+.mfeed small{color:#6B7280;font-size:.72rem}
+.mjust{font-size:.7rem;font-weight:800;color:#8A5A08;background:#FDF3E6;border-radius:999px;padding:3px 9px}
+.mpts{font-size:.75rem;font-weight:800;color:#fff;background:#5B63D8;border-radius:999px;padding:3px 9px}
+.mock figcaption{font-size:.82rem;color:var(--muted);margin-top:10px;max-width:300px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -352,6 +371,41 @@ const CASES = [
         ['Updating','a reshoot in the studio','an edit to the script','When a standard changes, the video is updated by changing the script, with no new filming.'],
       ]},
       { h:'The result', result:'Courses that meet the standard, are quicker to produce, and are cheaper to keep up to date.' },
+    ]},
+  { id:'notice', tab:'Family motivation',
+    kicker:'Notice Me · self-initiated',
+    title:'Rewards that don’t kill motivation',
+    pages:[
+      { h:'The problem', html:`<p>Family points apps reward everything, so children soon ask “how many points?” before they help. Research on the overjustification effect shows why: paying people for something they already want to do can make them want to do it less.</p><p>I wanted an app that rewards goals a child is working on, without putting a price on kindness they would show anyway.</p>`,
+        meta:[['Users','Parents, children and the wider family'],['Delivery','Web app on family phones, built on Firebase'],['My role','Design, build and testing with my own family']] },
+      { h:'What I did', html:`<ul>
+        <li>Made every award carry a sentence naming what the parent saw, because praise for the action teaches more than a number.</li>
+        <li>Added a separate “just tell them” channel that sends the sentence with no points at all.</li>
+        <li>Gave parents five ready-made sentences, so noticing takes one tap.</li>
+        <li>Kept points for the ways to earn a family sets, with a “What it buys” list of rewards to spend them on.</li></ul>` },
+      { h:'What it looks like', html:`<div class="mocks">
+        <figure class="mock"><div class="phone">
+          <div class="mh">⭐ I noticed…</div>
+          <div class="mnote">I saw you help Sami tidy his room without being asked</div>
+          <div class="mrow"><span>Give it points on its own</span><b>+1</b><b>+2</b><b>+3</b><b>+5</b></div>
+          <div class="mtell">Just tell them — no points</div>
+          <div class="mhead">Or say you saw it, with nothing attached</div>
+          <div class="mchips"><i>I saw you share without being asked</i><i>I saw you look after someone who was upset</i><i>I saw you include someone who was left out</i></div>
+        </div><figcaption>The parent’s screen. The no-points button is wider, warm-coloured and never shows a number.</figcaption></figure>
+        <figure class="mock"><div class="phone">
+          <div class="mh">Amina’s week</div>
+          <div class="mfeed"><span class="mjust">Just noticed</span><p>“I saw you help Sami tidy his room without being asked.”</p><small>Mum · today</small></div>
+          <div class="mfeed"><span class="mpts">+3</span><p>Read for 20 minutes before bed.</p><small>Dad · yesterday</small></div>
+          <div class="mfeed"><span class="mjust">Just noticed</span><p>“I saw you include someone who was left out.”</p><small>Grandma · Sunday</small></div>
+        </div><figcaption>The child’s feed. Noticed moments sit alongside points, with no number attached.</figcaption></figure>
+      </div><p class="hint" style="margin-top:18px">Illustration. The app is private, so these screens are redrawn from its real wording with made-up names.</p>` },
+      { h:'What I changed', edits:[
+        ['Thanks','points for everything','a “just tell them” button with no points','Kindness a child shows freely gets noticed, not priced.'],
+        ['Design','a points button, only cheaper','a different shape: full width, warm colour, no number','So it never looks like the small prize next to the big one.'],
+        ['Praise','points with no explanation','a sentence they will read with every award','Naming the action shows the child what to do again.'],
+        ['Effort','an empty note box','five ready-made sentences','Noticing has to be quicker than not noticing.'],
+      ]},
+      { h:'The result', result:'Children hear exactly what they did well, and the good things they would do anyway stay unpaid.' },
     ]},
 ];
 
