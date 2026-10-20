@@ -163,7 +163,7 @@ section.block{padding-block:56px}
 .saving{margin-top:14px;font-weight:600}
 
 /* ---------- path ---------- */
-.path{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.path{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
 .stop{border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;background:var(--surface);border-radius:14px;padding:14px;border-top:6px solid var(--k);min-width:0}
 .stop .yr{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
 .stop b{display:block;font-family:var(--display);font-size:1rem;line-height:1.2;margin-top:4px}
@@ -188,6 +188,7 @@ footer{padding-block:28px;color:var(--muted);font-size:.85rem}
   .photo .mono{font-size:3rem}
   .trade{grid-template-columns:1fr}
   .path{grid-template-columns:repeat(2,1fr)}
+  .stop:last-child{grid-column:1/-1}
 }
 @media (max-width:560px){
   .tabs{grid-template-columns:1fr}
@@ -215,7 +216,7 @@ footer{padding-block:28px;color:var(--muted);font-size:.85rem}
     <div>
       <div class="eyebrow">Learning designer · London</div>
       <h1>Cherno <span>Barrie</span></h1>
-      <p class="lede">I design CPD for finance professionals at AICPA-CIMA, and I build complete learning products, from the first storyboard to a working app in learners' hands.</p>
+      <p class="lede">I designed CPD for finance professionals at AICPA-CIMA, and I build complete learning products, from the first storyboard to a working app in learners' hands. Available now for full-time and contract work.</p>
       <div class="chips">
         <span class="chip t">Instructional design</span>
         <span class="chip s">Commercial sourcing</span>
@@ -296,7 +297,7 @@ footer{padding-block:28px;color:var(--muted);font-size:.85rem}
     <div class="contact">
       <div>
         <h2>Let's talk</h2>
-        <p style="margin:6px 0 0;opacity:.8">Open to senior learning design and learning technology roles in London.</p>
+        <p style="margin:6px 0 0;opacity:.8">Available now for full-time roles and contracts in London and remote.</p>
       </div>
       <div class="lines">
         <div class="copy"><code id="email">cdianrouga@gmail.com</code><button type="button" data-copy="email">Copy</button></div>
@@ -364,16 +365,16 @@ const CASES = [
       { h:'The result', result:'The course is still in progress. The activities are built and online, and a native speaker is recording the remaining sounds, so some screens are silent for now.', link:['Try the work in progress','https://cdian-ai.github.io/janngu-fulfulde/'] },
     ]},
   { id:'cpd', on:'--onStrong', c:'--indigo', soft:'--indigosoft', tab:'Finance CPD',
-    kicker:'AICPA-CIMA · London',
+    kicker:'AICPA-CIMA · London · 2024–26',
     title:'CPD for finance professionals, from storyboard to release',
     pages:[
       { h:'The problem', html:`<p>Busy accountants need CPD that counts toward their credit, meets NASBA standards and respects their time. Filmed training is slow and expensive to update when standards change.</p><p class="hint">Course materials belong to AICPA-CIMA, so this case study describes the process rather than showing screens.</p>`,
-        meta:[['Learners','Accountants and finance professionals'],['Delivery','Self-paced e-learning in Gomo, with Synthesia video'],['My role','Associate Learning Designer in a design team']] },
-      { h:'What I do', html:`<ul>
-        <li>Work with subject-matter experts to turn technical content into clear objectives and lessons that meet NASBA requirements.</li>
-        <li>Write storyboards and graphic asset lists, and work with designers so visuals match the brand.</li>
-        <li>Produce instructor video in Synthesia that follows the storyboard and the team's style guide.</li>
-        <li>Review each Gomo build against its storyboard and objectives before release.</li></ul>` },
+        meta:[['Learners','Accountants and finance professionals'],['Delivery','Self-paced e-learning in Gomo, with Synthesia video'],['My role','Associate Learning Designer in a design team, 2024–26']] },
+      { h:'What I did', html:`<ul>
+        <li>Worked with subject-matter experts to turn technical content into clear objectives and lessons that met NASBA requirements.</li>
+        <li>Wrote storyboards and graphic asset lists, and worked with designers so visuals matched the brand.</li>
+        <li>Produced instructor video in Synthesia that followed the storyboard and the team's style guide.</li>
+        <li>Reviewed each Gomo build against its storyboard and objectives before release.</li></ul>` },
       { h:'What I changed', edits:[
         ['Video','a filmed trainer','an AI avatar','I led the proof of concept that showed this could work at our standard.'],
         ['Updating','a reshoot in the studio','an edit to the script','When a standard changes, the video is updated by changing the script, with no new filming.'],
@@ -469,7 +470,8 @@ const PATH = [
   { y:'2017–20', b:'English instructor', k:'--coral', d:'Taught English to technical trainees in Saudi Arabia, and started building interactive lessons in Articulate Storyline.' },
   { y:'2020–23', b:'Digital learning designer', k:'--teal', d:'Aviation (ARX), Saudi Arabia. Designed e-learning for technical aviation training, with assessments and pilot testing.' },
   { y:'2023–24', b:'E-learning developer', k:'--coral', d:'OJO Tuition, London. Built course content with subject experts, trained staff on the LMS and used its reporting to support learners.' },
-  { y:'2024–now', b:'Associate Learning Designer', k:'--indigo', d:'AICPA-CIMA, London. CPD for finance professionals to NASBA standards, with Synthesia video and Gomo builds.' },
+  { y:'2024–26', b:'Associate Learning Designer', k:'--indigo', d:'AICPA-CIMA, London. CPD for finance professionals to NASBA standards, with Synthesia video and Gomo builds.' },
+  { y:'2026–now', b:'Independent project work', k:'--teal', d:'Designing and building learning products on a project basis, including the Access Box health lessons. Available for full-time and contract roles.' },
 ];
 $('pathStops').innerHTML = PATH.map((p,i)=>`<button class="stop" style="--k:var(${p.k});--on:var(${p.k==='--saffron'?'--onSaffron':'--onStrong'})" aria-pressed="false" data-i="${i}"><span class="yr">${p.y}</span><b>${p.b}</b></button>`).join('');
 function stop(i){
