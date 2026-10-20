@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cherno Barrie</title>
+<meta name="description" content="Cherno Barrie, learning designer in London. Case studies in offline health training, children's literacy and finance CPD.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a colourful hero with photo, then each case study as a page-turning book with its own colour world,
+   an interactive sourcing chart, a clickable career path, and contact. */
+:root{
+  --bg:#FFFFFF; --surface:#F3F5F9; --ink:#141B2D; --muted:#566079; --line:#DFE3EC;
+  --teal:#0B8F86; --tealsoft:#DDF3F1;
+  --saffron:#E39A1F; --saffronsoft:#FCEFD7;
+  --indigo:#4146B8; --indigosoft:#E5E6FA;
+  --coral:#E0533A; --coralsoft:#FBE3DD;
+  --onStrong:#FFFFFF; --onSaffron:#1B1407; --ins:#1E7A4C; --insbg:#DDF2E5; --del:#B23A2B; --delbg:#F9E2DE;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1320; --surface:#181E2E; --ink:#ECEFF6; --muted:#A1A9BD; --line:#2A3247;
+  --teal:#3CC4B9; --tealsoft:#123530; --saffron:#F2B54C; --saffronsoft:#3A2C12;
+  --indigo:#8D92F2; --indigosoft:#23264D; --coral:#F07A63; --coralsoft:#3D1F19;
+  --onStrong:#0F1320; --ins:#7DD8A6; --insbg:#173325; --del:#F09A8C; --delbg:#3A1F1B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1320; --surface:#181E2E; --ink:#ECEFF6; --muted:#A1A9BD; --line:#2A3247;
+  --teal:#3CC4B9; --tealsoft:#123530; --saffron:#F2B54C; --saffronsoft:#3A2C12;
+  --indigo:#8D92F2; --indigosoft:#23264D; --coral:#F07A63; --coralsoft:#3D1F19;
+  --onStrong:#0F1320; --ins:#7DD8A6; --insbg:#173325; --del:#F09A8C; --delbg:#3A1F1B; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);margin:0}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0 0 12px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:3px;border-radius:6px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:56px 48px;position:relative;overflow:hidden}
+.hero .inner{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+.photo{width:220px;height:220px;position:relative;flex:none}
+.photo .ring{position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(var(--teal) 0 25%,var(--saffron) 0 50%,var(--coral) 0 75%,var(--indigo) 0)}
+.photo .face{position:absolute;inset:10px;border-radius:50%;overflow:hidden;background:var(--surface);display:grid;place-items:center;border:6px solid var(--bg)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .mono{font-family:var(--display);font-weight:800;font-size:4.2rem;color:var(--indigo)}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:.98;font-weight:800}
+.hero h1 span{color:var(--teal)}
+.hero .lede{font-size:1.15rem;max-width:52ch;margin-top:16px;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px}
+.chip.t{background:var(--tealsoft);color:var(--teal)}
+.chip.s{background:var(--saffronsoft);color:var(--saffron)}
+.chip.c{background:var(--coralsoft);color:var(--coral)}
+.chip.i{background:var(--indigosoft);color:var(--indigo)}
+.heroLinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{font:600 .95rem var(--body);border:0;border-radius:999px;padding:11px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* ---------- section heads ---------- */
+section.block{padding-block:56px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:24px}
+.head h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800}
+.head p{max-width:46ch;color:var(--muted);margin:0}
+
+/* ---------- book tabs ---------- */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.tab{text-align:left;border:0;cursor:pointer;border-radius:16px;padding:16px;background:var(--surface);color:var(--ink);font:inherit;
+  display:flex;flex-direction:column;gap:6px;transition:transform .2s ease, box-shadow .2s ease;min-width:0}
+.tab .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tab b{font-family:var(--display);font-size:1.1rem;line-height:1.2}
+.tab[aria-selected="true"]{background:var(--c);color:var(--on);box-shadow:0 10px 24px -12px var(--c)}
+.tab[aria-selected="true"] .n{color:var(--on);opacity:.8}
+.tab:hover{transform:translateY(-2px)}
+
+/* ---------- the book ---------- */
+.book{--c:var(--teal);--soft:var(--tealsoft);background:var(--soft);border-radius:24px;padding:22px;position:relative}
+.bookTop{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.bookTop h3{font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;max-width:30ch}
+.bookTop .eyebrow{color:var(--c)}
+.viewport{perspective:1600px;overflow:hidden;border-radius:16px}
+.track{display:flex;align-items:stretch;transition:transform .55s cubic-bezier(.2,.7,.2,1);touch-action:pan-y}
+.page{flex:0 0 100%;min-width:0;background:var(--bg);border-radius:16px;padding:26px 28px;
+  transform-origin:left center;transition:transform .55s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
+  box-shadow:inset 6px 0 12px -10px rgba(0,0,0,.25)}
+.page.off-left{transform:rotateY(-14deg) scale(.96);opacity:.4}
+.page.off-right{transform:rotateY(10deg) scale(.96);opacity:.4}
+.page .pn{font-family:var(--mono);font-size:.72rem;color:var(--c);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.page h4{font-family:var(--display);font-size:1.45rem;margin:0 0 12px;font-weight:700}
+.page p,.page li{max-width:62ch}
+.page ul{margin:0;padding-left:1.1em}
+.page li{margin:8px 0}
+.page li::marker{color:var(--c)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:18px}
+.meta div{background:var(--soft);border-radius:12px;padding:12px 14px;min-width:0}
+.meta dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.meta dd{margin:4px 0 0;font-size:.95rem}
+.bookNav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.dots{display:flex;gap:8px;flex-wrap:wrap}
+.dot{width:12px;height:12px;border-radius:50%;border:0;background:color-mix(in srgb,var(--c) 30%,transparent);cursor:pointer;padding:0}
+.dot[aria-current="true"]{background:var(--c);width:30px;border-radius:6px}
+.arrows{display:flex;gap:8px}
+.arrow{width:46px;height:46px;border-radius:50%;border:0;background:var(--c);color:var(--on);font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
+.arrow:disabled{opacity:.3;cursor:default}
+.hint{font-size:.85rem;color:var(--muted)}
+
+/* edits */
+.edits{display:grid;gap:10px;margin-top:6px}
+.edit{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--surface);border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%}
+.edit .who{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.edit .txt{min-width:0}
+.edit del{color:var(--del);background:var(--delbg);padding:1px 5px;border-radius:4px}
+.edit ins{color:var(--ins);background:var(--insbg);padding:1px 5px;border-radius:4px;text-decoration:none}
+.edit .after{display:none}
+.edit.done .before{display:none}
+.edit.done .after{display:inline}
+.edit .why{display:block;font-size:.86rem;color:var(--muted);margin-top:4px}
+.edit:not(.done) .why{display:none}
+.edit .state{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--c);color:var(--on);white-space:nowrap}
+.edit.done .state{background:var(--insbg);color:var(--ins)}
+.applyAll{margin-top:12px}
+.result{font-family:var(--display);font-size:1.35rem;line-height:1.35;font-weight:500;max-width:40ch}
+.result-link{display:inline-block;margin-top:14px;font-weight:600;color:var(--c)}
+.lessonCard{display:flex;flex-direction:column;gap:10px;max-width:440px;margin-top:12px;padding:20px;border-radius:16px;background:#012147;color:#fff;text-decoration:none;box-shadow:0 14px 30px -18px #012147;transition:transform .2s ease}
+.lessonCard:hover{transform:translateY(-3px)}
+.lessonCard .eyebrow{color:#5FD3DE}
+.lessonCard b{font-family:var(--display);font-size:1.4rem;line-height:1.2}
+.lessonGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:4px}
+.lessonGrid .lessonCard{margin-top:0;max-width:none}
+.lcTop{display:flex;align-items:center;gap:10px}
+.lcMark{width:22px;height:22px;border:3px solid #fff;border-radius:6px;position:relative}
+.lcMark::after{content:"";position:absolute;width:11px;height:11px;background:#019BAC;border-radius:3px;top:-7px;right:-7px}
+.lcMeta{display:flex;flex-wrap:wrap;gap:8px}
+.lcMeta span{font-size:.8rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12)}
+.lcGo{font-weight:600;color:#5FD3DE}
+
+/* ---------- sourcing story ---------- */
+.trade{background:var(--saffronsoft);border-radius:24px;padding:28px;display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:start}
+.trade h3{font-size:1.6rem;font-weight:800;margin-bottom:10px}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.step{border:0;border-radius:999px;padding:8px 14px;font:600 .9rem var(--body);cursor:pointer;background:var(--bg);color:var(--ink)}
+.step[aria-pressed="true"]{background:var(--saffron);color:#1b1407}
+.storyText{min-height:7.5em}
+.chart{background:var(--bg);border-radius:16px;padding:20px 20px 14px}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end;height:230px;border-bottom:2px solid var(--line);position:relative}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bar .v{font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.bar .col{width:100%;max-width:90px;border-radius:10px 10px 0 0;height:0;transition:height .7s cubic-bezier(.2,.7,.2,1),opacity .4s;display:flex;flex-direction:column-reverse;overflow:hidden}
+.bar .col i{display:block;width:100%}
+.bar.dim{opacity:.25}
+.labels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;text-align:center;font-size:.85rem;color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.82rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--k)}
+.saving{margin-top:14px;font-weight:600}
+
+/* ---------- path ---------- */
+.path{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.stop{border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;background:var(--surface);border-radius:14px;padding:14px;border-top:6px solid var(--k);min-width:0}
+.stop .yr{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.stop b{display:block;font-family:var(--display);font-size:1rem;line-height:1.2;margin-top:4px}
+.stop[aria-pressed="true"]{background:var(--k);color:var(--on)}
+.stop[aria-pressed="true"] .yr{color:var(--on);opacity:.8}
+.stopDetail{margin-top:14px;background:var(--surface);border-radius:14px;padding:18px 20px;min-height:5em}
+.stopDetail h4{font-family:var(--display);font-size:1.15rem;margin:0 0 6px}
+.stopDetail p{margin:0;color:var(--muted)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+.contact h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800}
+.contact .lines{display:flex;flex-direction:column;gap:8px}
+.copy{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.copy code{font-family:var(--mono);font-size:.95rem;user-select:all}
+.copy button{font:600 .8rem var(--body);border:0;border-radius:999px;padding:6px 12px;cursor:pointer;background:var(--saffron);color:#1b1407}
+footer{padding-block:28px;color:var(--muted);font-size:.85rem}
+
+@media (max-width:820px){
+  .hero .inner{grid-template-columns:1fr;gap:24px}
+  .photo{width:150px;height:150px}
+  .photo .mono{font-size:3rem}
+  .trade{grid-template-columns:1fr}
+  .path{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .tabs{grid-template-columns:1fr}
+  .book{padding:14px}
+  .page{padding:20px}
+  .edit{grid-template-columns:1fr auto}
+  .edit .who{grid-column:1/-1}
+  .trade,.contact{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header class="band hero">
+  <div class="inner">
+    <div class="photo" aria-hidden="false">
+      <div class="ring"></div>
+      <div class="face">
+        <img src="me.jpg" alt="Portrait of Cherno Barrie" id="portrait" onerror="this.remove();document.getElementById('mono').hidden=false">
+        <span class="mono" id="mono" hidden>CB</span>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Learning designer · London</div>
+      <h1>Cherno <span>Barrie</span></h1>
+      <p class="lede">I design CPD for finance professionals at AICPA-CIMA, and I build complete learning products, from the first storyboard to a working app in learners' hands.</p>
+      <div class="chips">
+        <span class="chip t">Instructional design</span>
+        <span class="chip s">Commercial sourcing</span>
+        <span class="chip c">Offline learning</span>
+        <span class="chip i">Web app building</span>
+      </div>
+      <div class="heroLinks">
+        <a class="btn primary" href="#work">See the case studies</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band block" id="work">
+  <div class="inner">
+    <div class="head">
+      <h2>Three case studies</h2>
+      <p>Pick a project, then turn the pages. On each one you can apply the changes reviewers and learners asked for.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Case studies" id="tabs"></div>
+    <div class="book" id="book" role="tabpanel">
+      <div class="bookTop"><h3 id="bookTitle"></h3><span class="eyebrow" id="bookKicker"></span></div>
+      <div class="viewport" id="viewport" tabindex="0" aria-roledescription="book" aria-label="Case study pages">
+        <div class="track" id="track"></div>
+      </div>
+      <div class="bookNav">
+        <div class="dots" id="dots"></div>
+        <span class="hint" id="pageCount"></span>
+        <div class="arrows">
+          <button class="arrow" id="prev" aria-label="Previous page">←</button>
+          <button class="arrow" id="next" aria-label="Next page">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band block" id="sourcing">
+  <div class="inner">
+    <div class="trade">
+      <div>
+        <div class="eyebrow">Before learning design</div>
+        <h3>Buying tiles from the source</h3>
+        <p>After my degree I worked in my family's building-materials business in Sierra Leone. Step through what happened.</p>
+        <div class="steps" role="group" aria-label="Story steps" id="steps">
+          <button class="step" aria-pressed="true" data-s="0">1 · Dubai</button>
+          <button class="step" aria-pressed="false" data-s="1">2 · Morbi</button>
+          <button class="step" aria-pressed="false" data-s="2">3 · Shipped home</button>
+        </div>
+        <p class="storyText" id="storyText"></p>
+      </div>
+      <div class="chart" aria-live="polite">
+        <div class="eyebrow" style="margin-bottom:12px">Price per box of tiles, US dollars</div>
+        <div class="bars">
+          <div class="bar" id="b0"><span class="v">$2.50</span><div class="col"><i style="height:100%;background:var(--coral)"></i></div></div>
+          <div class="bar" id="b1"><span class="v">$1.94</span><div class="col"><i style="height:100%;background:var(--teal)"></i></div></div>
+          <div class="bar" id="b2"><span class="v">$2.20</span><div class="col"><i style="height:88.2%;background:var(--teal)"></i><i style="height:11.8%;background:var(--indigo)"></i></div></div>
+        </div>
+        <div class="labels"><span>Dubai trader</span><span>Morbi factory</span><span>Landed in Sierra Leone</span></div>
+        <div class="legend"><span style="--k:var(--coral)">Old price</span><span style="--k:var(--teal)">Factory price</span><span style="--k:var(--indigo)">Shipping (Maersk Line)</span></div>
+        <p class="saving" id="saving"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band block" id="path">
+  <div class="inner">
+    <div class="head"><h2>The path so far</h2><p>Tap a stop to see what I did there.</p></div>
+    <div class="path" id="pathStops"></div>
+    <div class="stopDetail" id="stopDetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="band block" id="contact">
+  <div class="inner">
+    <div class="contact">
+      <div>
+        <h2>Let's talk</h2>
+        <p style="margin:6px 0 0;opacity:.8">Open to senior learning design and learning technology roles in London.</p>
+      </div>
+      <div class="lines">
+        <div class="copy"><code id="email">cdianrouga@gmail.com</code><button type="button" data-copy="email">Copy</button></div>
+        <div class="copy"><code id="phone">+44 7950 553465</code><button type="button" data-copy="phone">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="band"><div class="inner">© 2026 Cherno Barrie</div></footer>
+
+<script>
+const CASES = [
+  { id:'health', on:'--onStrong', c:'--teal', soft:'--tealsoft', tab:'Offline health training',
+    kicker:'Access Box Learning · Sierra Leone',
+    title:'Maternity lessons for birth attendants, with no internet',
+    pages:[
+      { h:'The problem', html:`<p>Heavy bleeding after birth, and a newborn getting cold, are two of the most common preventable causes of death for mothers and babies. The health workers who deal with them often work far from a hospital and from the internet. Good training video exists, but it is long, uses clinical English and needs a connection to stream.</p>`,
+        meta:[['Learners','Community health workers and skilled birth attendants'],['Delivery','HTML5 lessons on Kolibri, served from a Raspberry Pi hub'],['My role','Learning design, writing, build and packaging']] },
+      { h:'What I did', html:`<ul>
+        <li>Built short lessons from Global Health Media Project training videos, including <em>Danger Signs After Birth</em>, <em>Managing Severe Bleeding After Birth</em> and <em>Keeping the Newborn Warm</em>.</li>
+        <li>Checked drug doses against WHO and FIGO guidance.</li>
+        <li>Packaged video, lesson and logo as one Kolibri-ready file, so it plays on an offline hub with nothing missing.</li>
+        <li>Put every lesson through three reviews: learning design, clinical review against Sierra Leone protocol, and a senior structural pass.</li></ul>` },
+      { h:'What review changed', edits:[
+        ['Clinical','Methergine','ergometrine','Use the generic name health workers will see on the shelf.'],
+        ['Clinical','a drug that must be kept cold','misoprostol added as an option','It does not need a fridge, and the cold chain often fails.'],
+        ['Clinical','global death figure','Sierra Leone figure','So the stakes feel local.'],
+        ['Language','contraindicated','must not be given if','Plain English for readers working in a second language.'],
+        ['Language','large-bore cannula','widest cannula available','Describes what to reach for, not the jargon.'],
+        ['Structure','one quiz at the end','six quick checks through the lesson','Each check opens the next slide, so learners act on an idea while it is fresh.'],
+      ]},
+      { h:'The result', result:'A birth attendant can finish each lesson on a shared tablet with no signal, in plain English, using the drugs actually available to them.' },
+      { h:'Try a lesson', html:`<p>Two real lessons. <em>Danger Signs</em> is approved after all three reviews; <em>Newborn Warm</em> is the lesson where the end-of-lesson quiz became six quick checks, with its final clinical review still to come. Answer each check to move on, the way a health worker would.</p>
+        <div class="lessonGrid"><a class="lessonCard" href="lessons/danger-signs/index.html" target="_blank" rel="noopener">
+          <span class="lcTop"><span class="lcMark" aria-hidden="true"></span><span class="eyebrow">Access Box Health · Maternity</span></span>
+          <b>Danger Signs After Birth</b>
+          <span class="lcMeta"><span>12 screens</span><span>8 quick checks</span><span>18–25 min</span></span>
+          <span class="lcGo">Open the lesson ↗</span>
+        </a>
+        <a class="lessonCard" href="lessons/newborn-warm/index.html" target="_blank" rel="noopener">
+          <span class="lcTop"><span class="lcMark" aria-hidden="true"></span><span class="eyebrow">Access Box Health · Newborn care</span></span>
+          <b>Keeping the Newborn Warm</b>
+          <span class="lcMeta"><span>10 screens</span><span>6 quick checks</span><span>18–22 min</span></span>
+          <span class="lcGo">Open the lesson ↗</span>
+        </a></div>
+        <p class="hint" style="margin-top:14px">The Danger Signs video belongs to Global Health Media Project, so it opens on their site. On the offline hub, videos play alongside the lessons.</p>` },
+    ]},
+  { id:'janngu', on:'--onSaffron', c:'--saffron', soft:'--saffronsoft', tab:'Children’s literacy',
+    kicker:'Janngu Fulfulde · self-initiated',
+    title:'A Fulfulde literacy course for children who don’t speak it yet',
+    pages:[
+      { h:'The problem', html:`<p>The best Pular primer was written for children who already speak the language at home and only need to learn to read it. Children growing up in London need the sounds, the words and the grammar all at once, and most courses for them are word lists with pictures.</p>`,
+        meta:[['Learners','Diaspora children new to the language'],['Delivery','Web app on a phone, with progress saved on the device'],['My role','Design, build and testing, with native-speaker checks']] },
+      { h:'What I did', html:`<ul>
+        <li>Turned the primer into a journey of more than 50 steps through real towns of the Fulani regions, moving from letter to syllable to word to phrase.</li>
+        <li>Added over 260 recorded audio clips, so every sound can be heard, not just read.</li>
+        <li>Checked the vocabulary against the primer author's own Guinea dictionary and replaced words that were wrong or rarely used.</li>
+        <li>Tested with children and rebuilt the activities that did not work, across more than 200 versions.</li></ul>` },
+      { h:'What testing changed', edits:[
+        ['Sequence','grammar word taught first','word ending taught first','The ending predicts the grammar word, so one rule now covers 23 of the 33 nouns.'],
+        ['Instructions','English text on every card','a listen button and an adult guide','Many learners cannot read English yet.'],
+        ['Activity','letters sorted by animal pictures','three boxes, taught first, then sorted','The animals had nothing to do with the letters.'],
+        ['Practice','one example','six words sharing the pattern','One example is a fact. Six make a pattern a child can spot.'],
+      ]},
+      { h:'The result', result:'The course is live and free to try on any phone.', link:['Open Janngu Fulfulde','https://cdian-ai.github.io/janngu-fulfulde/'] },
+    ]},
+  { id:'cpd', on:'--onStrong', c:'--indigo', soft:'--indigosoft', tab:'Finance CPD',
+    kicker:'AICPA-CIMA · London',
+    title:'CPD for finance professionals, from storyboard to release',
+    pages:[
+      { h:'The problem', html:`<p>Busy accountants need CPD that counts toward their credit, meets NASBA standards and respects their time. Filmed training is slow and expensive to update when standards change.</p><p class="hint">Course materials belong to AICPA-CIMA, so this case study describes the process rather than showing screens.</p>`,
+        meta:[['Learners','Accountants and finance professionals'],['Delivery','Self-paced e-learning in Gomo, with Synthesia video'],['My role','Associate Learning Designer in a design team']] },
+      { h:'What I do', html:`<ul>
+        <li>Work with subject-matter experts to turn technical content into clear objectives and lessons that meet NASBA requirements.</li>
+        <li>Write storyboards and graphic asset lists, and work with designers so visuals match the brand.</li>
+        <li>Produce instructor video in Synthesia that follows the storyboard and the team's style guide.</li>
+        <li>Review each Gomo build against its storyboard and objectives before release.</li></ul>` },
+      { h:'What I changed', edits:[
+        ['Video','a filmed trainer','an AI avatar','I led the proof of concept that showed this could work at our standard.'],
+        ['Updating','a reshoot in the studio','an edit to the script','When a standard changes, the video is updated by changing the script, with no new filming.'],
+      ]},
+      { h:'The result', result:'Courses that meet the standard, are quicker to produce, and are cheaper to keep up to date.' },
+    ]},
+];
+
+const $ = id => document.getElementById(id);
+let ci = 0, pi = 0;
+
+function renderTabs(){
+  $('tabs').innerHTML = CASES.map((k,i)=>`<button class="tab" role="tab" id="tab-${k.id}" aria-selected="${i===ci}" style="--c:var(${k.c});--on:var(${k.on})" data-i="${i}"><span class="n">Case ${i+1}</span><b>${k.tab}</b></button>`).join('');
+}
+function renderBook(){
+  const k = CASES[ci], book = $('book');
+  book.style.setProperty('--c', `var(${k.c})`); book.style.setProperty('--on', `var(${k.on})`); book.style.setProperty('--soft', `var(${k.soft})`);
+  book.setAttribute('aria-labelledby', 'tab-'+k.id);
+  $('bookTitle').textContent = k.title; $('bookKicker').textContent = k.kicker;
+  $('track').innerHTML = k.pages.map((p,i)=>{
+    let inner = `<div class="pn">Page ${i+1} of ${k.pages.length}</div><h4>${p.h}</h4>`;
+    if (p.html) inner += p.html;
+    if (p.meta) inner += `<dl class="meta">${p.meta.map(m=>`<div><dt>${m[0]}</dt><dd>${m[1]}</dd></div>`).join('')}</dl>`;
+    if (p.edits) inner += `<p class="hint">Tap a line to apply the change.</p><div class="edits">${p.edits.map(e=>
+      `<button type="button" class="edit" aria-pressed="false"><span class="who">${e[0]}</span><span class="txt"><span class="before"><del>${e[1]}</del></span><span class="after"><del>${e[1]}</del> → <ins>${e[2]}</ins></span><span class="why">${e[3]}</span></span><span class="state"><span class="before">Apply</span><span class="after">Done</span></span></button>`).join('')}</div>
+      <button type="button" class="btn ghost applyAll">Apply all</button>`;
+    if (p.result) inner += `<p class="result">${p.result}</p>` + (p.link ? `<a class="result-link" href="${p.link[1]}" target="_blank" rel="noopener">${p.link[0]} ↗</a>` : '');
+    return `<article class="page" aria-hidden="${i!==pi}">${inner}</article>`;
+  }).join('');
+  $('dots').innerHTML = k.pages.map((p,i)=>`<button class="dot" aria-label="Page ${i+1}: ${p.h}" data-p="${i}"></button>`).join('');
+  go(pi);
+}
+function go(n){
+  const k = CASES[ci]; pi = Math.max(0, Math.min(k.pages.length-1, n));
+  $('track').style.transform = `translateX(${-pi*100}%)`;
+  [...$('track').children].forEach((el,i)=>{
+    el.classList.toggle('off-left', i<pi); el.classList.toggle('off-right', i>pi);
+    el.setAttribute('aria-hidden', i!==pi); el.inert = i!==pi;
+  });
+  [...$('dots').children].forEach((d,i)=>d.setAttribute('aria-current', i===pi));
+  $('prev').disabled = pi===0; $('next').disabled = pi===k.pages.length-1;
+  $('pageCount').textContent = `${pi+1} / ${k.pages.length}`;
+}
+$('tabs').addEventListener('click', e=>{
+  const t = e.target.closest('.tab'); if(!t) return;
+  ci = +t.dataset.i; pi = 0; renderTabs(); renderBook();
+});
+$('tabs').addEventListener('keydown', e=>{
+  if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+  ci = (ci + (e.key==='ArrowRight'?1:CASES.length-1)) % CASES.length; pi=0; renderTabs(); renderBook();
+  $('tabs').children[ci].focus();
+});
+$('prev').onclick = ()=>go(pi-1);
+$('next').onclick = ()=>go(pi+1);
+$('dots').addEventListener('click', e=>{ const d=e.target.closest('.dot'); if(d) go(+d.dataset.p); });
+$('viewport').addEventListener('keydown', e=>{ if(e.key==='ArrowRight') go(pi+1); if(e.key==='ArrowLeft') go(pi-1); });
+$('track').addEventListener('click', e=>{
+  const ed = e.target.closest('.edit');
+  if (ed){ const on = !ed.classList.contains('done'); ed.classList.toggle('done', on); ed.setAttribute('aria-pressed', on); return; }
+  if (e.target.closest('.applyAll')){ e.target.closest('.page').querySelectorAll('.edit').forEach(x=>{x.classList.add('done');x.setAttribute('aria-pressed',true)}); }
+});
+// swipe
+let sx=null, sy=null;
+$('viewport').addEventListener('pointerdown', e=>{ if(e.pointerType!=='mouse'){ sx=e.clientX; sy=e.clientY; } });
+$('viewport').addEventListener('pointerup', e=>{
+  if(sx===null) return; const dx=e.clientX-sx, dy=e.clientY-sy; sx=null;
+  if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)) go(pi + (dx<0?1:-1));
+});
+
+// sourcing story
+const STORY = [
+  { t:'I was sent to Dubai to buy tiles and building materials for the business. Traders there were selling us tiles at $2.50 a box. Looking closer, I found the tiles were not made in Dubai at all. They came from factories in India.', show:[0], s:'' },
+  { t:'I persuaded the owners to let me go to the source. I travelled to Morbi in Gujarat, the centre of India’s tile industry, and bought straight from the manufacturer at $1.94 a box.', show:[0,1], s:'22% cheaper per box than buying in Dubai.' },
+  { t:'I arranged container shipping to Sierra Leone with Maersk Line. Even with freight included, each box landed for $2.20, still below the price we had been paying in Dubai before shipping. Back home I helped run the business: customers, staff and apprentices, the bank and suppliers.', show:[0,1,2], s:'12% cheaper per box, delivered to our door.' },
+];
+const MAX = 2.6, H = { b0:2.50, b1:1.94, b2:2.20 };
+function story(n){
+  [...$('steps').children].forEach((b,i)=>b.setAttribute('aria-pressed', i===n));
+  $('storyText').textContent = STORY[n].t; $('saving').textContent = STORY[n].s;
+  ['b0','b1','b2'].forEach((id,i)=>{
+    const shown = STORY[n].show.includes(i);
+    $(id).classList.toggle('dim', !shown);
+    $(id).querySelector('.col').style.height = (shown ? H[id]/MAX*100 : 4) + '%';
+    $(id).querySelector('.v').style.visibility = shown ? 'visible' : 'hidden';
+  });
+}
+$('steps').addEventListener('click', e=>{ const b=e.target.closest('.step'); if(b) story(+b.dataset.s); });
+
+// path
+const PATH = [
+  { y:'2010–13', b:'BSc Property & Urban Development', k:'--indigo', d:'University of Westminster, London. Property valuation, law and urban development.' },
+  { y:'2013–17', b:'Procurement & operations', k:'--saffron', d:'Family building-materials business in Sierra Leone. Sourced tiles in Dubai, then direct from Morbi, India, and arranged shipping with Maersk Line.' },
+  { y:'2017–20', b:'English instructor', k:'--coral', d:'Taught English to technical trainees in Saudi Arabia, and started building interactive lessons in Articulate Storyline.' },
+  { y:'2020–23', b:'Digital learning designer', k:'--teal', d:'Aviation (ARX), Saudi Arabia. Designed e-learning for technical aviation training, with assessments and pilot testing.' },
+  { y:'2023–24', b:'E-learning developer', k:'--coral', d:'OJO Tuition, London. Built course content with subject experts, trained staff on the LMS and used its reporting to support learners.' },
+  { y:'2024–now', b:'Associate Learning Designer', k:'--indigo', d:'AICPA-CIMA, London. CPD for finance professionals to NASBA standards, with Synthesia video and Gomo builds.' },
+];
+$('pathStops').innerHTML = PATH.map((p,i)=>`<button class="stop" style="--k:var(${p.k});--on:var(${p.k==='--saffron'?'--onSaffron':'--onStrong'})" aria-pressed="false" data-i="${i}"><span class="yr">${p.y}</span><b>${p.b}</b></button>`).join('');
+function stop(i){
+  [...$('pathStops').children].forEach((b,j)=>b.setAttribute('aria-pressed', i===j));
+  $('stopDetail').innerHTML = `<h4>${PATH[i].b} · ${PATH[i].y}</h4><p>${PATH[i].d}</p>`;
+}
+$('pathStops').addEventListener('click', e=>{ const b=e.target.closest('.stop'); if(b) stop(+b.dataset.i); });
+
+// copy
+document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click', ()=>{
+  const el = $(btn.dataset.copy), text = el.textContent;
+  const done = ()=>{ btn.textContent='Copied'; setTimeout(()=>btn.textContent='Copy',1500); };
+  const fallback = ()=>{ const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Selected'; };
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch(e){ fallback(); }
+}));
+
+renderTabs(); renderBook(); story(0); stop(PATH.length-1);
+</script>
+
+</body>
+</html>
